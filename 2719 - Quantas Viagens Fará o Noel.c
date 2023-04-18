@@ -7,23 +7,28 @@ int main(void){
 
     for(i = 1; i <= casos; i++){
         scanf("%d %d", &quantPresentes, &pesoMax);
+
         soma = 0;
         viagens = 0;
+
         for(j = 1; j <= quantPresentes; j++){
             scanf("%d", &pesoPresente);
             soma = soma + pesoPresente;
 
-            if(soma > pesoMax){
-                soma = soma - pesoPresente;
+            if (soma == pesoMax){
+                viagens++;
+                soma = 0;
+            }
+            else if(soma > pesoMax){
+                soma = pesoPresente;
                 viagens += 1;
-                continue;
             }
         }
-        if(soma < pesoMax || soma == pesoMax){
+        if(soma > 0 && soma < pesoMax){
             viagens += 1;
-            printf("%d\n", viagens);
-            continue;
         }
+
+        printf("%d\n", viagens);
 
     }
 
